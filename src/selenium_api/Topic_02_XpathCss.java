@@ -16,7 +16,7 @@ public class Topic_02_XpathCss {
 	
 	WebDriver driver;
   
-	@Test
+	@Test 
 	public void TC_01_VerifyURLandTitle() {
 
 		
@@ -51,7 +51,9 @@ public class Topic_02_XpathCss {
 		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
 		
 //		Step 05 - Back lại trang đăng nhập
-		driver.findElement(By.xpath("//a[@class='back-link']")).click();
+		//driver.findElement(By.xpath("//a[@class='back-link']")).click();
+		driver.navigate().back();
+		
 		
 //		Step 06 - Kiểm tra url của page đăng nhập là: http://live.guru99.com/index.php/customer/account/login/
 		String loginUrl = driver.getCurrentUrl();
@@ -59,7 +61,8 @@ public class Topic_02_XpathCss {
 		Assert.assertEquals(loginUrl, "http://live.guru99.com/index.php/customer/account/login/");
 		
 //		Step 07 - Forward tới trang tạo tài khoản		
-		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
+		//driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
+		driver.navigate().forward();
 		
 //		Step 08 - Kiểm tra url của page tạo tài khoản là: http://live.guru99.com/index.php/customer/account/create/		
 		String signupUrl = driver.getCurrentUrl();
