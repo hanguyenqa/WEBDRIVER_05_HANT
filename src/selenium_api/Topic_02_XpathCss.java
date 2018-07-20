@@ -22,49 +22,49 @@ public class Topic_02_XpathCss {
 		
 		/* 
 		 Test Script 01: Verify URL and title
-		Step 01 - Truy cập vào trang: http://live.guru99.com
-		Step 02 - Kiểm tra title của page là: "Home page"
-		Step 03 - Click vào link "My Account" để tới trang đăng nhập
-		Step 04 - Click CREATE AN ACCOUNT button để tới trang đăng kí tài khoản
-		Step 05 - Back lại trang đăng nhập
-		Step 06 - Kiểm tra url của page đăng nhập là: http://live.guru99.com/index.php/customer/account/login/
-		Step 07 - Forward tới trang tạo tài khoản
-		Step 08 - Kiểm tra url của page tạo tài khoản là: http://live.guru99.com/index.php/customer/account/create/
+		Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com
+		Step 02 - Ki峄僲 tra title c峄 page l脿: "Home page"
+		Step 03 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸
+		Step 04 - Click CREATE AN ACCOUNT button 膽峄� t峄沬 trang 膽膬ng k铆 t脿i kho岷
+		Step 05 - Back l岷 trang 膽膬ng nh岷璸
+		Step 06 - Ki峄僲 tra url c峄 page 膽膬ng nh岷璸 l脿: http://live.guru99.com/index.php/customer/account/login/
+		Step 07 - Forward t峄沬 trang t岷 t脿i kho岷
+		Step 08 - Ki峄僲 tra url c峄 page t岷 t脿i kho岷 l脿: http://live.guru99.com/index.php/customer/account/create/
 		 */
 		
-//		Step 01 - Truy cập vào trang: http://live.guru99.com
+//		Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com
 		driver.get("http://live.guru99.com");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
 		
-//		Step 02 - Kiểm tra title của page là: "Home page"
+//		Step 02 - Ki峄僲 tra title c峄 page l脿: "Home page"
 		
 		String pageTitle = driver.getTitle();
 		
 		Assert.assertEquals(pageTitle, "Home page");
 		
-//		Step 03 - Click vào link "My Account" để tới trang đăng nhập	
-		driver.findElement(By.xpath("//div[@class='footer-container']//a[@href='http://live.guru99.com/index.php/customer/account/']")).click();
+//		Step 03 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸	
+		driver.findElement(By.xpath("//div[@class='footer-container']//a[text()='My Account")).click();
 		
-//		Step 04 - Click CREATE AN ACCOUNT button để tới trang đăng kí tài khoản
+//		Step 04 - Click CREATE AN ACCOUNT button 膽峄� t峄沬 trang 膽膬ng k铆 t脿i kho岷
 		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
 		
-//		Step 05 - Back lại trang đăng nhập
+//		Step 05 - Back l岷 trang 膽膬ng nh岷璸
 		//driver.findElement(By.xpath("//a[@class='back-link']")).click();
 		driver.navigate().back();
 		
 		
-//		Step 06 - Kiểm tra url của page đăng nhập là: http://live.guru99.com/index.php/customer/account/login/
+//		Step 06 - Ki峄僲 tra url c峄 page 膽膬ng nh岷璸 l脿: http://live.guru99.com/index.php/customer/account/login/
 		String loginUrl = driver.getCurrentUrl();
 		
 		Assert.assertEquals(loginUrl, "http://live.guru99.com/index.php/customer/account/login/");
 		
-//		Step 07 - Forward tới trang tạo tài khoản		
+//		Step 07 - Forward t峄沬 trang t岷 t脿i kho岷		
 		//driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
 		driver.navigate().forward();
 		
-//		Step 08 - Kiểm tra url của page tạo tài khoản là: http://live.guru99.com/index.php/customer/account/create/		
+//		Step 08 - Ki峄僲 tra url c峄 page t岷 t脿i kho岷 l脿: http://live.guru99.com/index.php/customer/account/create/		
 		String signupUrl = driver.getCurrentUrl();
 		Assert.assertEquals(signupUrl, "http://live.guru99.com/index.php/customer/account/create/");
 		
@@ -75,25 +75,25 @@ public class Topic_02_XpathCss {
 		
 		/*
 		Test Script 02: Login empty
-		Step 01 - Truy cập vào trang: http://live.guru99.com/
-		Step 02 - Click vào link "My Account" để tới trang đăng nhập
-		Step 03 - Để trống Username/ Password
+		Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com/
+		Step 02 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸
+		Step 03 - 膼峄� tr峄憂g Username/ Password
 		Step 04 - Click Login button
-		Step 05 - Verify error message xuất hiện tại 2 field:  This is a required field.
+		Step 05 - Verify error message xu岷 hi峄噉 t岷 2 field:  This is a required field.
 		 */
 		
-//		Step 01 - Truy cập vào trang: http://live.guru99.com/
+//		Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com/
 		driver.get("http://live.guru99.com");
 		
-//		Step 02 - Click vào link "My Account" để tới trang đăng nhập
-		driver.findElement(By.xpath("//div[@class='footer-container']//a[@href='http://live.guru99.com/index.php/customer/account/']")).click();
+//		Step 02 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸
+		driver.findElement(By.xpath("//div[@class='footer-container']//a[text()='My Account")).click();
 		
-//		Step 03 - Để trống Username/ Password
+//		Step 03 - 膼峄� tr峄憂g Username/ Password
 		
 //		Step 04 - Click Login button
 		driver.findElement(By.id("send2")).click();
 		
-//		Step 05 - Verify error message xuất hiện tại 2 field:  This is a required field.
+//		Step 05 - Verify error message xu岷 hi峄噉 t岷 2 field:  This is a required field.
 		
 		String emailErrorMsg = driver.findElement(By.id("advice-required-entry-email")).getText();
 		
@@ -110,26 +110,26 @@ public class Topic_02_XpathCss {
 	
 		/*
 		 Test Script 03: Login with Email invalid
-			Step 01 - Truy cập vào trang: http://live.guru99.com/
-			Step 02 - Click vào link "My Account" để tới trang đăng nhập
-			Step 03 - Nhập email invalid: 123434234@12312.123123
+			Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com/
+			Step 02 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸
+			Step 03 - Nh岷璸 email invalid: 123434234@12312.123123
 			Step 04 - Click Login button
-			Step 05 - Verify error message xuất hiện:  Please enter a valid email address. For example johndoe@domain.com.
+			Step 05 - Verify error message xu岷 hi峄噉:  Please enter a valid email address. For example johndoe@domain.com.
 		 */
 		
-//			Step 01 - Truy cập vào trang: http://live.guru99.com/
+//			Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com/
 			driver.get("http://live.guru99.com");
 						
-//			Step 02 - Click vào link "My Account" để tới trang đăng nhập
-			driver.findElement(By.xpath("//div[@class='footer-container']//a[@href='http://live.guru99.com/index.php/customer/account/']")).click();
+//			Step 02 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸
+			driver.findElement(By.xpath("//div[@class='footer-container']//a[text()='My Account")).click();
 			
-//			Step 03 - Nhập email invalid: 123434234@12312.123123
+//			Step 03 - Nh岷璸 email invalid: 123434234@12312.123123
 			driver.findElement(By.id("email")).sendKeys("123434234@12312.123123");
 			
 //			Step 04 - Click Login button
 			driver.findElement(By.id("send2")).click();
 						
-//			Step 05 - Verify error message xuất hiện:  Please enter a valid email address. For example johndoe@domain.com.
+//			Step 05 - Verify error message xu岷 hi峄噉:  Please enter a valid email address. For example johndoe@domain.com.
 			String invalidEmailMsg = driver.findElement(By.id("advice-validate-email-email")).getText();
 			Assert.assertEquals(invalidEmailMsg, "Please enter a valid email address. For example johndoe@domain.com.");
 			
@@ -141,28 +141,28 @@ public class Topic_02_XpathCss {
 
 		/*
 		Test Script 04: Login with Password incorrect
-		Step 01 - Truy cập vào trang: http://live.guru99.com/
-		Step 02 - Click vào link "My Account" để tới trang đăng nhập
-		Step 03 - Nhập email correct and password incorrect: automation@gmail.com/ 123
+		Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com/
+		Step 02 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸
+		Step 03 - Nh岷璸 email correct and password incorrect: automation@gmail.com/ 123
 		Step 04 - Click Login button
-		Step 05 - Verify error message xuất hiện: Please enter 6 or more characters without leading or trailing spaces.
+		Step 05 - Verify error message xu岷 hi峄噉: Please enter 6 or more characters without leading or trailing spaces.
 		 */
 
 
-//		Step 01 - Truy cập vào trang: http://live.guru99.com/
+//		Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com/
 		driver.get("http://live.guru99.com");
 					
-//		Step 02 - Click vào link "My Account" để tới trang đăng nhập
-		driver.findElement(By.xpath("//div[@class='footer-container']//a[@href='http://live.guru99.com/index.php/customer/account/']")).click();
+//		Step 02 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸
+		driver.findElement(By.xpath("//div[@class='footer-container']//a[text()='My Account")).click();
 		
-//		Step 03 - Nhập email correct and password incorrect: automation@gmail.com/ 123		
+//		Step 03 - Nh岷璸 email correct and password incorrect: automation@gmail.com/ 123		
 		driver.findElement(By.id("email")).sendKeys("automation@gmail.com");
 		driver.findElement(By.id("pass")).sendKeys("123");
 		
 //		Step 04 - Click Login button
 		driver.findElement(By.id("send2")).click();
 		
-//		Step 05 - Verify error message xuất hiện: Please enter 6 or more characters without leading or trailing spaces.
+//		Step 05 - Verify error message xu岷 hi峄噉: Please enter 6 or more characters without leading or trailing spaces.
 		String incorrectPasswordMsg = driver.findElement(By.id("advice-validate-password-pass")).getText();
 		Assert.assertEquals(incorrectPasswordMsg, "Please enter 6 or more characters without leading or trailing spaces.");
 
@@ -173,29 +173,29 @@ public class Topic_02_XpathCss {
 	public void TC_05_CreateAnAccount() throws InterruptedException {
 	/*
 	 Test Script 05: Create an account
-	Step 01 - Truy cập vào trang: http://live.guru99.com/
-	Step 02 - Click vào link "My Account" để tới trang đăng nhập
-	Step 03 - Click CREATE AN ACCOUNT button để tới trang đăng kí tài khoản
-	Step 04 - Nhập thông tin hợp lệ vào tất cả các field: First Name/ Last Name/ Email Address/ Password/ Confirm Password
-	(Lưu ý: Tạo random cho dữ liệu tại field Email Address)
+	Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com/
+	Step 02 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸
+	Step 03 - Click CREATE AN ACCOUNT button 膽峄� t峄沬 trang 膽膬ng k铆 t脿i kho岷
+	Step 04 - Nh岷璸 th么ng tin h峄 l峄� v脿o t岷 c岷� c谩c field: First Name/ Last Name/ Email Address/ Password/ Confirm Password
+	(L瓢u 媒: T岷 random cho d峄� li峄噓 t岷 field Email Address)
 	Step 05 - Click REGISTER button
-	Step 05 - Verify message xuất hiện khi đăng kí thành công: Thank you for registering with Main Website Store.
-	Step 06 - Logout khỏi hệ thống
-	Step 07 - Kiểm tra hệ thống navigate về Home page sau khi logout thành công
+	Step 05 - Verify message xu岷 hi峄噉 khi 膽膬ng k铆 th脿nh c么ng: Thank you for registering with Main Website Store.
+	Step 06 - Logout kh峄廼 h峄� th峄憂g
+	Step 07 - Ki峄僲 tra h峄� th峄憂g navigate v峄� Home page sau khi logout th脿nh c么ng
 	*/
 		
 		
-//		Step 01 - Truy cập vào trang: http://live.guru99.com/
+//		Step 01 - Truy c岷璸 v脿o trang: http://live.guru99.com/
 		driver.get("http://live.guru99.com");
 					
-//		Step 02 - Click vào link "My Account" để tới trang đăng nhập
-		driver.findElement(By.xpath("//div[@class='footer-container']//a[@href='http://live.guru99.com/index.php/customer/account/']")).click();
+//		Step 02 - Click v脿o link "My Account" 膽峄� t峄沬 trang 膽膬ng nh岷璸
+		driver.findElement(By.xpath("//div[@class='footer-container']//a[text()='My Account")).click();
 
-//		Step 03 - Click CREATE AN ACCOUNT button để tới trang đăng kí tài khoản
+//		Step 03 - Click CREATE AN ACCOUNT button 膽峄� t峄沬 trang 膽膬ng k铆 t脿i kho岷
 		driver.findElement(By.xpath("//span[text()='Create an Account']")).click();
 		
-//		Step 04 - Nhập thông tin hợp lệ vào tất cả các field: First Name/ Last Name/ Email Address/ Password/ Confirm Password	
-//		(Lưu ý: Tạo random cho dữ liệu tại field Email Address)
+//		Step 04 - Nh岷璸 th么ng tin h峄 l峄� v脿o t岷 c岷� c谩c field: First Name/ Last Name/ Email Address/ Password/ Confirm Password	
+//		(L瓢u 媒: T岷 random cho d峄� li峄噓 t岷 field Email Address)
 		
 		String email = "test" + createRandomNumber() + "@test.com";
 		
@@ -208,19 +208,19 @@ public class Topic_02_XpathCss {
 		
 //		Step 05 - Click REGISTER button
 		driver.findElement(By.xpath("//button[@title='Register']")).click();
-//		Step 05 - Verify message xuất hiện khi đăng kí thành công: Thank you for registering with Main Website Store.
+//		Step 05 - Verify message xu岷 hi峄噉 khi 膽膬ng k铆 th脿nh c么ng: Thank you for registering with Main Website Store.
 		
 		String successMsg = driver.findElement(By.xpath("//li[@class='success-msg']//span")).getText();
 		
 		Assert.assertEquals(successMsg, "Thank you for registering with Main Website Store.");
 		
-//		Step 06 - Logout khỏi hệ thống
+//		Step 06 - Logout kh峄廼 h峄� th峄憂g
 		driver.findElement(By.xpath("//div[@class='skip-links']//span[text()='Account']")).click();
 		driver.findElement(By.xpath("//a[@href='http://live.guru99.com/index.php/customer/account/logout/']")).click();
 		
 		Thread.sleep(7000);	
 		
-//		Step 07 - Kiểm tra hệ thống navigate về Home page sau khi logout thành công
+//		Step 07 - Ki峄僲 tra h峄� th峄憂g navigate v峄� Home page sau khi logout th脿nh c么ng
 		String pageTitle = driver.getTitle();
 		
 		Assert.assertEquals(pageTitle, "Home page");
