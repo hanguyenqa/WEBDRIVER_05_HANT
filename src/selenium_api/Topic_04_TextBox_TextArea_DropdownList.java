@@ -18,7 +18,7 @@ import org.testng.annotations.AfterClass;
 public class Topic_04_TextBox_TextArea_DropdownList {
 	
 	WebDriver driver;
-	String email, password, ID, customerName, gender, dob, address, city, state, pin, mobileNumber, customerID;
+	String email, password, ID, customerName, gender, dob, address, city, state, pin, mobileNumber, customerID, newAddress, newCity;
   
 	public void TC_01_HandleDropdown() {
 		
@@ -58,6 +58,8 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		
+		
+		//Create new account
 		
 		WebElement UserID = driver.findElement(By.name("uid"));
 		UserID.sendKeys(ID);
@@ -109,6 +111,7 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 		Thread.sleep(5000);
 		
 		
+		//Go to Edit customer
 		customerID = driver.findElement(By.xpath("//td[text()='Customer ID']/following-sibling::td")).getText();
 		
 		WebElement editCustomer = driver.findElement(By.xpath("//a[text()='Edit Customer']"));
@@ -118,6 +121,42 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 		cusIDEditField.sendKeys(customerID);
 		WebElement submitEditBtn = driver.findElement(By.name("AccSubmit"));
 		submitEditBtn.click();
+		
+		Thread.sleep(5000);
+		
+		
+		//Verify
+		
+		String actualCustomerName = driver.findElement(By.name("name")).getText();
+		
+		Assert.assertEquals(actualCustomerName,customerName);
+		
+		WebElement addressTextarea = driver.findElement(By.name("addr"));
+		
+		String actualAddress = addressTextarea.getText();
+		
+		Assert.assertEquals(actualAddress,address);
+		
+		addressTextarea.clear();
+		addressTextarea.sendKeys(newAddress);
+		
+		WebElement cityTextbox = driver.findElement(By.name("city"));
+		
+		cityTextbox.clear();
+		cityTextbox.sendKeys(newCity);
+		cityTextbox.submit();
+		
+		Thread.sleep(3000);
+		
+		String actualNewAddress = addressTextarea.getText();
+		Assert.assertEquals(actualNewAddress,newAddress);
+		
+		
+		String actualNewCity = cityTextbox.getText();
+		Assert.assertEquals(actualNewCity,newCity);
+		
+		
+		
 		
 		
 		
@@ -139,7 +178,8 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 		state = "Unknown";
 		pin = "123123";
 		mobileNumber = "0123456789";
-			
+		newAddress = "234 somewhere";
+		newCity = "HN";
 		
   }
 
