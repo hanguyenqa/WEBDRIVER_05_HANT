@@ -124,11 +124,13 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 		
 		Thread.sleep(5000);
 		
-		
+	
 		//Verify
 		
-		String actualCustomerName = driver.findElement(By.name("name")).getText();
+		String actualCustomerName = driver.findElement(By.name("name")).getAttribute("value").toString();
 		
+		System.out.println(actualCustomerName);
+		System.out.println(customerName);
 		Assert.assertEquals(actualCustomerName,customerName);
 		
 		WebElement addressTextarea = driver.findElement(By.name("addr"));
@@ -144,15 +146,22 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 		
 		cityTextbox.clear();
 		cityTextbox.sendKeys(newCity);
-		cityTextbox.submit();
+		
+		WebElement submitEditButton = driver.findElement(By.name("sub"));
+		submitEditButton.click();
+		
 		
 		Thread.sleep(3000);
 		
-		String actualNewAddress = addressTextarea.getText();
+		WebElement updatedAddressTextarea = driver.findElement(By.name("addr"));
+		
+		String actualNewAddress = updatedAddressTextarea.getText();
 		Assert.assertEquals(actualNewAddress,newAddress);
 		
+
+		WebElement updatedCityTextbox = driver.findElement(By.name("city"));
 		
-		String actualNewCity = cityTextbox.getText();
+		String actualNewCity = updatedCityTextbox.getText();
 		Assert.assertEquals(actualNewCity,newCity);
 		
 		
