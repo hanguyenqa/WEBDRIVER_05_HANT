@@ -153,13 +153,13 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 		
 		Thread.sleep(3000);
 		
-		WebElement updatedAddressTextarea = driver.findElement(By.name("addr"));
+		WebElement updatedAddressTextarea = driver.findElement(By.xpath("//td[text()='Address']/following-sibling::td"));
 		
 		String actualNewAddress = updatedAddressTextarea.getText();
 		Assert.assertEquals(actualNewAddress,newAddress);
 		
 
-		WebElement updatedCityTextbox = driver.findElement(By.name("city"));
+		WebElement updatedCityTextbox = driver.findElement(By.xpath("//td[text()='City']/following-sibling::td"));
 		
 		String actualNewCity = updatedCityTextbox.getText();
 		Assert.assertEquals(actualNewCity,newCity);
