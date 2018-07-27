@@ -10,15 +10,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Topic_01_CheckEnvironment {
-    WebDriver driver;
+	WebDriver driver;
 
 	@Test
 	public void TC_01_CheckUrlAndTitle() {
-	
-		//test
+
+		// test
 		String homePageTitle = driver.getTitle();
 		Assert.assertEquals(homePageTitle, "Guru99 Bank Home Page");
-	
+
 		String homePageUrl = driver.getCurrentUrl();
 		Assert.assertEquals(homePageUrl, "http://demo.guru99.com/v4/");
 	}
