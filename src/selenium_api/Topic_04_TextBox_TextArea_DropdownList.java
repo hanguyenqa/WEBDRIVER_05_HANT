@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -12,12 +13,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 
 public class Topic_04_TextBox_TextArea_DropdownList {
 
 	WebDriver driver;
+	
 	String email, password, ID, customerName, gender, dob, address, city, state, pin, mobileNumber, customerID,
 			newAddress, newCity;
 
@@ -54,7 +57,46 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 	}
 
 	@Test
-	public void TC_02_Textbox_TextArea() throws Exception {
+	public void TC_02_Dropdown() throws Exception {
+		
+		driver.get("http://jqueryui.com/resources/demos/selectmenu/default.html");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//span[@id='number-button']")).click();
+		
+				
+		Thread.sleep(5000);
+		
+		Select selectNumberDropBox = new Select(driver.findElement(By.xpath("//ul[@id='number-menu']/li")));
+				
+		List <WebElement> options = selectNumberDropBox.getOptions(); 
+		
+		for (int i = 0; i < options.size(); i++) {
+			
+			if ( options.get(i).getText().equals("19"))
+				
+			{
+						
+				options.get(i).click();
+				
+				break;
+				
+			}
+			
+		}
+		
+		
+		
+		Thread.sleep(5000);
+		
+		
+		
+		
+	}
+	
+
+	public void TC_03_Textbox_TextArea() throws Exception {
 
 		driver.get("http://demo.guru99.com/v4");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -70,6 +112,8 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 
 		WebElement loginBtn = driver.findElement(By.name("btnLogin"));
 		loginBtn.click();
+		
+		Assert.assertTrue(driver.findElement(By.xpath("//marquee[text()=\"Welcome To Manager's Page of Guru99 Bank\"]")).isDisplayed());
 
 		WebElement newCustomer = driver.findElement(By.xpath("//a[text()='New Customer']"));
 		newCustomer.click();
@@ -128,8 +172,6 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 
 		String actualCustomerName = driver.findElement(By.name("name")).getAttribute("value").toString();
 
-		System.out.println(actualCustomerName);
-		System.out.println(customerName);
 		Assert.assertEquals(actualCustomerName, customerName);
 
 		WebElement addressTextarea = driver.findElement(By.name("addr"));
@@ -167,7 +209,8 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 	@BeforeClass
 	public void beforeClass() {
 
-		driver = new ChromeDriver();
+		//driver = new ChromeDriver();
+		driver = new FirefoxDriver();
 		email = "test" + createRandomNumber() + "@gmail.com";
 		ID = "mngr144320";
 		password = "zYvYhyz";
@@ -199,7 +242,7 @@ public class Topic_04_TextBox_TextArea_DropdownList {
 
 	@AfterClass
 	public void afterClass() {
-		// driver.quit();
+		//driver.quit();
 	}
 
 }
