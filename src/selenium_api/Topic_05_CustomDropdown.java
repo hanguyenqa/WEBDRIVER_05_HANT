@@ -20,7 +20,7 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 
-public class Topic_04_CustomDropdown {
+public class Topic_05_CustomDropdown {
 
 	WebDriver driver;
 
