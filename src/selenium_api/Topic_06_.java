@@ -126,6 +126,7 @@ public class Topic_06_ {
 		
 		alert.sendKeys("daominhdao");
 		
+		
 		Thread.sleep(5000);
 		alert.dismiss();
 		
