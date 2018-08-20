@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class Topic_07_User_Interactions {
+public class Topic_06_User_Interactions {
 
 	WebDriver driver;
 	WebDriverWait wait;

@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class Topic_06_Button_RadioButton_Checkbox_Alert {
+public class Topic_05_Button_RadioButton_Checkbox_Alert {
 
 	WebDriver driver;
 	WebDriverWait wait;
