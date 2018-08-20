@@ -1,28 +1,26 @@
 package selenium_api;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class Topic_06_User_Interactions {
 
 	WebDriver driver;
 	WebDriverWait wait;
 
-	public void TC_01_1_Hover_Mouse() throws Exception {
+	public void TC_01_1_HoverMouse() throws Exception {
 
 		driver.get("http://daominhdam.890m.com/");
 
@@ -34,7 +32,7 @@ public class Topic_06_User_Interactions {
 
 	}
 
-	public void TC_01_2_Hover_Mouse() throws Exception {
+	public void TC_01_2_HoverMouse() throws Exception {
 
 		driver.get("https://www.myntra.com/");
 		WebElement menu = driver.findElement(By.xpath("//div[@class='desktop-userIconsContainer']"));
@@ -48,7 +46,7 @@ public class Topic_06_User_Interactions {
 
 	}
 
-	public void TC_02_1_Click_And_Hold() throws Exception {
+	public void TC_02_1_ClickAndHold() throws Exception {
 
 		driver.get("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 
@@ -61,7 +59,7 @@ public class Topic_06_User_Interactions {
 
 	}
 
-	public void TC_02_2_Click_And_Hold() throws Exception {
+	public void TC_02_2_ClickAndHold() throws Exception {
 
 		driver.get("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 
@@ -81,20 +79,83 @@ public class Topic_06_User_Interactions {
 
 	}
 
-	@Test
-	public void TC_03_Double_Click() throws Exception {
-		
+	public void TC_03_DoubleClick() throws Exception {
+
 		driver.get("http://www.seleniumlearn.com/double-click");
-		
+
 		WebElement button = driver.findElement(By.xpath("//button[text()='Double-Click Me!']"));
 
 		Actions action = new Actions(driver);
-		
+
 		action.doubleClick(button).perform();
 
+		Alert alert = driver.switchTo().alert();
+		String textOnAlert = alert.getText();
+		Assert.assertEquals(textOnAlert, "The Button was double-clicked.");
+
+		alert.accept();
+
+	}
+
+	public void TC_04_RightClick() throws Exception {
+
+		driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
+
+		WebElement button = driver.findElement(By.xpath("//span[text()='right click me']"));
+
+		Actions action = new Actions(driver);
+
+		action.contextClick(button).perform();
+
+		WebElement quitButton = driver.findElement(By.xpath("//li[contains(@class,'context-menu-icon-quit')]"));
+
+		action.moveToElement(quitButton).perform();
+
+		Thread.sleep(5000);
+
+		Assert.assertEquals(driver.findElement(By.xpath("//li[contains(@class,'context-menu-visible') and contains(@class,'context-menu-hover')]/span[text()='Quit']")).isDisplayed(), true);
+
+		quitButton.click();
+
+		Alert alert = driver.switchTo().alert();
+		alert.accept();
+
+	}
+
+	public void TC_05_1_DropAndDrop() throws Exception {
+
+		driver.get("http://demos.telerik.com/kendo-ui/dragdrop/angular");
+
+		WebElement source = driver.findElement(By.xpath("//div[@id='droptarget']"));
+		WebElement target = driver.findElement(By.xpath("//div[@id='draggable']"));
+
+		Assert.assertEquals(source.getText(), "Drag the small circle here.");
+
+		Actions action = new Actions(driver);
+		action.clickAndHold(target).moveToElement(source).release().perform();
+
+		Assert.assertEquals(source.getText(), "You did great!");
+
+		Thread.sleep(5000);
+
+	}
+
+	@Test
+	public void TC_05_2_DropAndDrop() throws Exception {
+
+		driver.get("http://jqueryui.com/resources/demos/droppable/default.html");
 		
-		
-		
+		Thread.sleep(5000);
+
+		WebElement source = driver.findElement(By.xpath("//div[@id='draggable']"));
+		WebElement target = driver.findElement(By.xpath("//div[@id='droppable']"));
+
+		Actions action = new Actions(driver);
+		action.clickAndHold(target).moveToElement(source).release().perform();
+
+		Assert.assertEquals(driver.findElement(By.xpath("//p[text()='Dropped!']")).isDisplayed(), true);
+
+		Thread.sleep(5000);
 
 	}
 
