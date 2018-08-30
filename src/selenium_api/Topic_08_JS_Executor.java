@@ -1,7 +1,7 @@
 package selenium_api;
 
-import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +16,8 @@ import org.testng.annotations.AfterClass;
 public class Topic_08_JS_Executor {
 
 	WebDriver driver;
-
+	
+	@Test
 	public void TC_01() {
 
 		openAnyURLByJS("http://live.guru99.com/");
@@ -31,8 +32,7 @@ public class Topic_08_JS_Executor {
 
 		clickToElementByJS(mobileMemu);
 
-		WebElement samSungProduct = driver.findElement(By.xpath(
-				"//a[text()='Samsung Galaxy']/ancestor::h2/following-sibling::div//button[@title='Add to Cart']"));
+		WebElement samSungProduct = driver.findElement(By.xpath("//a[text()='Samsung Galaxy']/ancestor::h2/following-sibling::div//button[@title='Add to Cart']"));
 
 		clickToElementByJS(samSungProduct);
 
@@ -50,8 +50,7 @@ public class Topic_08_JS_Executor {
 
 		scrollToBottomPage();
 
-		WebElement lastItem = driver.findElement(By.xpath(
-				"//th[text()='WISHLIST_CNT']/following-sibling::td[text()='The number of items in your Wishlist.']"));
+		WebElement lastItem = driver.findElement(By.xpath("//th[text()='WISHLIST_CNT']/following-sibling::td[text()='The number of items in your Wishlist.']"));
 
 		Assert.assertEquals(lastItem.isDisplayed(), true);
 
@@ -64,13 +63,32 @@ public class Topic_08_JS_Executor {
 
 	@Test
 	public void TC_02() {
-		
+
 		openAnyURLByJS("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_input_disabled");
+
+		String firstName = "Ha", lastName = "Nguyen";
 		
+		WebElement iframe = driver.findElement(By.xpath("//iframe[@id='iframeResult']"));
+		
+		driver.switchTo().frame(iframe);
+		
+		WebElement firstNameBox = driver.findElement(By.xpath("//input[@name='fname']"));
 		WebElement lastNameBox = driver.findElement(By.xpath("//input[@name='lname']"));
+		WebElement submitButton = driver.findElement(By.xpath("//input[@type='submit']"));
+		
 		removeAttributeInDOM(lastNameBox, "disabled");
+		
+		firstNameBox.sendKeys(firstName);
+		lastNameBox.sendKeys(lastName);
+		
+		clickToElementByJS(submitButton);
+		
+		WebElement message = driver.findElement(By.xpath("//div[@class='w3-container w3-large w3-border']"));
+		
+		Assert.assertTrue(message.getText().contains("fname=Ha&lname=Nguyen"));
+		
 	}
-	
+
 	public Object executeJSForWebBrowser(String JS) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		return js.executeScript(JS);
@@ -108,6 +126,7 @@ public class Topic_08_JS_Executor {
 	}
 
 	public Object scrollToBottomPage() {
+		
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			return js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -115,6 +134,7 @@ public class Topic_08_JS_Executor {
 			e.getMessage();
 			return null;
 		}
+		
 	}
 
 	@BeforeClass
@@ -126,7 +146,7 @@ public class Topic_08_JS_Executor {
 
 	@AfterClass
 	public void afterClass() {
-		// driver.close();
+		driver.close();
 	}
 
 }
