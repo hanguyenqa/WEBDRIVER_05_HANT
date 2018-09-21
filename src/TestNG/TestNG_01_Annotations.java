@@ -12,6 +12,8 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
 public class TestNG_01_Annotations {
+	
+	//test
 
 	@BeforeSuite
 	public void beforeSuite() {
